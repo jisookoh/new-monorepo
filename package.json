@@ -2,7 +2,14 @@
   "name": "new-monorepo",
   "packageManager": "yarn@4.1.1",
   "private": true,
+  "scripts": {
+    "client": "yarn workspace client",
+    "server": "yarn workspace server"
+  },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "devDependencies": {
+    "typescript": "5.4.3"
+  }
 }
