@@ -3,12 +3,16 @@
   "packageManager": "yarn@4.1.1",
   "private": true,
   "scripts": {
-    "client": "yarn workspace client",
-    "server": "yarn workspace server"
+    "client": "yarn workspace client dev",
+    "server": "yarn workspace server start:dev"
   },
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "packages",
+      "packages/client",
+      "packages/server"
+    ]
+  },
   "devDependencies": {
     "typescript": "5.4.3"
   }
