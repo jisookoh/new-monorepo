@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-// import * as path from 'path';
 
 import { AppController } from "./app.controller";
 import { AppService } from "./app.service";
-import { BoardModule } from "./modules/board.module";
-import { BoardEntity } from "./entities/board.entity";
+import { BoardModule } from "./domains/board/modules/board.module";
 
 @Module({
   imports: [
@@ -23,12 +21,12 @@ import { BoardEntity } from "./entities/board.entity";
               database: configService.get('DB_DATABASE'),
               username: configService.get('DB_USER'),
               password: configService.get('DB_PASSWORD'),
-              // entities: [
-              //     path.join(__dirname, 'src/entities/**/*.entity.{js, ts}'),
-              // ],
-              entities: [BoardEntity],
+              entities: [`${__dirname}/../../../src/**/*.entity.{ts,js}`],
+              cli: {
+                  entitiesDir: '**/*.entity.ts',
+              },
               synchronize: false,
-              logging: true,
+              autoLoadEntities: true,
           }),
       }),
       BoardModule
