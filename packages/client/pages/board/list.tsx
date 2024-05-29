@@ -31,19 +31,21 @@ export default function list() {
         <S.BoardListContainer>
             <S.BoardListWrapper>
                 <S.BoardTitle>게시판</S.BoardTitle>
-                <Table>
-                    <TableHead columns={BOARD_COLUMNS} />
-                    <TableBody>
-                        { BOARD_DUMMY_DATA.map(data => (
-                            <TableTr key={data.id}>
-                                <TableTd>{ data.id }</TableTd>
-                                <TableTd>{ data.title }</TableTd>
-                                <TableTd>{ data.writer }</TableTd>
-                                <TableTd>{ data.reg_dt }</TableTd>
-                            </TableTr>
-                        )) }
-                    </TableBody>
-                </Table>
+                <S.BoardTable>
+                    <Table>
+                        <TableHead columns={BOARD_COLUMNS} />
+                        <TableBody>
+                            { BOARD_DUMMY_DATA.map(data => (
+                                <TableTr key={data.id}>
+                                    <TableTd>{ data.id }</TableTd>
+                                    <TableTd>{ data.title }</TableTd>
+                                    <TableTd>{ data.writer }</TableTd>
+                                    <TableTd>{ data.reg_dt }</TableTd>
+                                </TableTr>
+                            )) }
+                        </TableBody>
+                    </Table>
+                </S.BoardTable>
             </S.BoardListWrapper>
         </S.BoardListContainer>
     )
@@ -51,7 +53,6 @@ export default function list() {
 
 namespace S {
      export const BoardListContainer = styled.div`
-        background-color: ${Colors.Grey50};
         padding: 120px 0;
      `;
 
@@ -59,10 +60,17 @@ namespace S {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 24px;
      `;
 
      export const BoardTitle = styled.h2`
-        ${Typography.Medium};
-         font-weight: ${FontWeight.Medium};
+        ${Typography.Large};
+         font-weight: ${FontWeight.Bold};
+         
      `
+
+    export const BoardTable = styled.div`
+        max-width: 960px;
+        width: 100%;
+    `;
 }
