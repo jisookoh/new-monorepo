@@ -3,13 +3,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from "typeorm";
 
 import { BoardEntity } from "../entities/board.entity";
-import { CreateBoardDto } from "../dto/create-board.dto";
+import { BoardDto } from "../dto/board.dto";
 
 @Injectable()
 export class BoardService {
     constructor(@InjectRepository(BoardEntity) private boardRepository: Repository<BoardEntity>) {}
 
-    async create(board: CreateBoardDto): Promise<BoardEntity> {
+    async create(board: BoardDto): Promise<BoardEntity> {
         const newBoard = this.boardRepository.create(board);
         return await this.boardRepository.save(newBoard);
     }

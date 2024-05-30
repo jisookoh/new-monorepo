@@ -1,6 +1,6 @@
 import { Body, Controller, Delete, Get, Param, Post, Put } from "@nestjs/common"
 
-import { CreateBoardDto } from "../dto/create-board.dto";
+import { BoardDto } from "../dto/board.dto";
 import { BoardService } from "../services/board.service";
 import { BoardEntity } from "../entities/board.entity";
 
@@ -9,7 +9,7 @@ export class BoardController {
     constructor(private boardService: BoardService) {};
 
     @Post()
-    async create(@Body() board: CreateBoardDto): Promise<BoardEntity> {
+    async create(@Body() board: BoardDto): Promise<BoardEntity> {
         return await this.boardService.create(board);
     }
 
