@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
-import { Colors, FontWeight, Typography } from "@/styles";
+import { FontWeight, Typography } from "@/styles";
 import {Table, TableHead, TableBody, TableTr, TableTd} from "@/components/common/table";
+import { useGetBoard } from "@/queries/board/useBoard";
 
 interface BoardDataType {
     id: number,
@@ -27,6 +28,8 @@ const BOARD_DUMMY_DATA: BoardDataType[] = [
 ]
 
 export default function list() {
+    const { data } = useGetBoard();
+    console.log(data);
     return (
         <S.BoardListContainer>
             <S.BoardListWrapper>
