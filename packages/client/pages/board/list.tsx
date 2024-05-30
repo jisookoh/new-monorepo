@@ -6,30 +6,18 @@ import { useGetBoard } from "@/queries/board/useBoard";
 interface BoardDataType {
     id: number,
     title: string,
-    writer: string,
-    reg_dt: string
+    contents: string,
+    reg_date: string,
+    mod_date?: string,
+    remove_data?: null
 }
 
-const BOARD_COLUMNS: string[] = ['번호', '제목', '작성자', '등록일'];
+const BOARD_COLUMNS: string[] = ['번호', '제목', '등록일'];
 
-const BOARD_DUMMY_DATA: BoardDataType[] = [
-    {
-        id: 1,
-        title: '게시판 더미 데이터',
-        writer: '고지수',
-        reg_dt: '2024-05-29'
-    },
-    {
-        id: 2,
-        title: '게시판 더미 데이터2',
-        writer: '고지수2',
-        reg_dt: '2024-05-29'
-    },
-]
 
 export default function list() {
-    const { data } = useGetBoard();
-    console.log(data);
+    const { data: boardData } = useGetBoard();
+
     return (
         <S.BoardListContainer>
             <S.BoardListWrapper>
@@ -38,12 +26,12 @@ export default function list() {
                     <Table>
                         <TableHead columns={BOARD_COLUMNS} />
                         <TableBody>
-                            { BOARD_DUMMY_DATA.map(data => (
-                                <TableTr key={data.id}>
-                                    <TableTd>{ data.id }</TableTd>
-                                    <TableTd>{ data.title }</TableTd>
-                                    <TableTd>{ data.writer }</TableTd>
-                                    <TableTd>{ data.reg_dt }</TableTd>
+                            { boardData &&
+                                boardData.map((board: BoardDataType) => (
+                                <TableTr key={board.id}>
+                                    <TableTd>{ board.id }</TableTd>
+                                    <TableTd>{ board.title }</TableTd>
+                                    <TableTd>{ board.reg_date }</TableTd>
                                 </TableTr>
                             )) }
                         </TableBody>

@@ -2,7 +2,9 @@ import axios, { AxiosRequestConfig, AxiosResponse, ResponseType } from "axios";
 
 export const client = axios.create({
     baseURL: process.env.NEXT_PUBLIC_API_URL,
-    headers: { 'content-type': 'application/json' },
+    headers: {
+        'content-type': 'application/json',
+    },
     withCredentials: true,
 });
 
