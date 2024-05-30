@@ -29,10 +29,9 @@ import { BoardModule } from "./domains/board/modules/board.module";
               autoLoadEntities: true,
           }),
       }),
-      BoardModule
+      BoardModule,
   ],
   controllers: [AppController],
   providers: [AppService],
-
 })
 export class AppModule {}
