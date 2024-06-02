@@ -1,12 +1,13 @@
 import { BoardDto } from "server/src/domains/board/dto/board.dto";
 import { get, post, remove, put } from "@/api/BaseApi";
+import { BoardDataType } from "@/constants/board";
 
 export const postBoard = async (params: BoardDto) => {
     return ( await post('/board', params) ).data;
 }
 
 export const getBoard = async () => {
-    return ( await get('/board') ).data;
+    return ( await get<BoardDataType[]>('/board') ).data;
 }
 
 export const putBoard = async (params: BoardDto) => {
