@@ -1,6 +1,5 @@
 import styled from '@emotion/styled';
 import Link from "next/link";
-import { FontWeight, Typography } from "@/styles";
 import { Table, TableHead, TableBody, TableTr, TableTd } from "@/components/common/table";
 import { useGetBoard } from "@/queries/board/useBoard";
 import { BOARD_COLUMNS, BoardDataType } from "@/constants/board";
