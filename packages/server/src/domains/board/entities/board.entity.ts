@@ -10,7 +10,7 @@ export class BoardEntity {
     title: string;
 
     @Column()
-    contents: string;
+    content: string;
 
     @CreateDateColumn()
     reg_date: Date;

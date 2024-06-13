@@ -6,6 +6,9 @@ import { getBoard, postBoard, putBoard } from "@/api/BoardApi";
 export const useCreateBoard = () =>
     useMutation({
         mutationFn: (params: BoardDto) => postBoard(params),
+        onSuccess: () => {
+            console.log('successfully created board');
+        }
     });
 
 export const useGetBoard = () =>

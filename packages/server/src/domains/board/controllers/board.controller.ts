@@ -10,6 +10,7 @@ export class BoardController {
 
     @Post()
     async create(@Body() board: BoardDto): Promise<BoardEntity> {
+        console.log(board);
         return await this.boardService.create(board);
     }
 
