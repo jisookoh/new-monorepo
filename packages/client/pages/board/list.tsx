@@ -1,9 +1,11 @@
 import styled from '@emotion/styled';
+import Link from "next/link";
 import { FontWeight, Typography } from "@/styles";
 import { Table, TableHead, TableBody, TableTr, TableTd } from "@/components/common/table";
 import { useGetBoard } from "@/queries/board/useBoard";
 import { BOARD_COLUMNS, BoardDataType } from "@/constants/board";
 import { BoardLayout } from "@/components/layout/BoardLayout";
+
 
 export default function BoardList() {
     const { data: boardData } = useGetBoard();
@@ -11,6 +13,9 @@ export default function BoardList() {
     return (
         <BoardLayout>
             <S.BoardTable>
+                <S.MoveToCreate>
+                    <Link href="/board/create">게시글 생성</Link>
+                </S.MoveToCreate>
                 <Table>
                     <TableHead columns={BOARD_COLUMNS} />
                     <TableBody>
@@ -30,25 +35,15 @@ export default function BoardList() {
 };
 
 namespace S {
-     export const BoardListContainer = styled.div`
-        padding: 120px 0;
-     `;
-
-     export const BoardListWrapper = styled.section`
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 24px;
-     `;
-
-     export const BoardTitle = styled.h2`
-        ${Typography.Large};
-         font-weight: ${FontWeight.Bold};
-         
-     `
-
     export const BoardTable = styled.div`
         max-width: 960px;
         width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    `;
+
+    export const MoveToCreate = styled.div`
+        text-align: right;
     `;
 }
