@@ -4,6 +4,7 @@ import { Table, TableHead, TableBody, TableTr, TableTd } from "@/components/comm
 import { useGetBoard } from "@/queries/board/useBoard";
 import { BOARD_COLUMNS, BoardDataType } from "@/constants/board";
 import { BoardLayout } from "@/components/layout/BoardLayout";
+import { Buttons } from "@/styles";
 
 
 export default function BoardList() {
@@ -13,7 +14,7 @@ export default function BoardList() {
         <BoardLayout>
             <S.BoardTable>
                 <S.MoveToCreate>
-                    <Link href="/board/create">게시글 생성</Link>
+                    <S.MoveToCreateLink href="/board/create">게시글 생성</S.MoveToCreateLink>
                 </S.MoveToCreate>
                 <Table>
                     <TableHead columns={BOARD_COLUMNS} />
@@ -44,5 +45,10 @@ namespace S {
 
     export const MoveToCreate = styled.div`
         text-align: right;
+    `;
+
+    export const MoveToCreateLink = styled(Link)`
+        display: inline-block;
+        ${Buttons.default};
     `;
 }
