@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Buttons, Colors } from "@/styles";
 import { ButtonColor } from "@/constants/button";
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, memo } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     label?: string,
@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: ButtonColor
 }
 
-export const Button = ({
+export const Button = memo(({
     label = "확인",
     onClick,
     theme,
@@ -24,7 +24,7 @@ export const Button = ({
             { label }
         </S.Button>
     )
-}
+});
 
 namespace S {
     export const Button = styled.button<{ theme?: ButtonColor }>`

@@ -41,7 +41,11 @@ export default function CreateBoard() {
 
 namespace S {
     export const CreateBoardFormWrapper = styled.form`
-        
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        max-width: 960px;
+        width: 100%;
     `;
 
     export const Input = styled.input``;
