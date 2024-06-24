@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css';
 import { BoardLayout } from "@/components/layout/BoardLayout";
 import { useCreateBoard } from "@/queries/board/useBoard";
+import { Button } from "@/components/common/button";
 
 const Quill = dynamic(() => import('react-quill'), {
     ssr: false,
@@ -34,7 +35,12 @@ export default function CreateBoard() {
             <S.CreateBoardFormWrapper onSubmit={onSubmit}>
                 <S.Input type="text" value={title} onChange={changeTitleValue} />
                 <Quill value={content} onChange={changeContentsValue} />
-                <button type="submit">저장하기</button>
+                <Button 
+                    type="submit"
+                    label="저장하기"
+                >
+                    저장하기
+                </Button>
             </S.CreateBoardFormWrapper>
         </BoardLayout>
     )

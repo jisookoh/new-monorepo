@@ -49,6 +49,6 @@ namespace S {
 
     export const MoveToCreateLink = styled(Link)`
         display: inline-block;
-        ${Buttons.default};
+        ${Buttons.LinkDefault};
     `;
 }
