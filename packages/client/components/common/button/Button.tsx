@@ -1,7 +1,7 @@
 import styled from "@emotion/styled";
 import { Buttons, Colors } from "@/styles";
 import { ButtonColor } from "@/constants/button";
-import { ButtonHTMLAttributes } from "react";
+import { ButtonHTMLAttributes, memo } from "react";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     label?: string,
@@ -9,7 +9,7 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     theme?: ButtonColor
 }
 
-export const Button = ({
+const Button = ({
     label = "확인",
     onClick,
     theme,
@@ -24,7 +24,9 @@ export const Button = ({
             { label }
         </S.Button>
     )
-}
+};
+
+export default memo(Button);
 
 namespace S {
     export const Button = styled.button<{ theme?: ButtonColor }>`
@@ -36,7 +38,8 @@ namespace S {
                     return `
                         background-color: ${Colors.Blue500};
                         
-                        :hover {
+                        :hover,
+                        :focus {
                             background-color: ${Colors.Blue400};
                         }
                     `;
@@ -44,7 +47,8 @@ namespace S {
                     return `
                         background-color: ${Colors.Yellow500};
                         
-                        :hover {
+                        :hover,
+                        :focus {
                             background-color: ${Colors.Yellow400};
                         }
                     `;
@@ -52,7 +56,8 @@ namespace S {
                     return `
                         background-color: ${Colors.Green700};
                         
-                        :hover {
+                        :hover,
+                        :focus {
                             background-color: ${Colors.Green600};
                         }
                     `;
@@ -60,7 +65,8 @@ namespace S {
                     return `
                         background-color: ${Colors.Red500};
                         
-                        :hover {
+                        :hover,
+                        :focus {
                             background-color: ${Colors.Red400};
                         }
                     `;
@@ -68,7 +74,8 @@ namespace S {
                     return `
                         background-color: ${Colors.Purple500};
                         
-                        :hover {
+                        :hover,
+                        :focus {
                             background-color: ${Colors.Purple400};
                         }
                     `;
@@ -76,7 +83,8 @@ namespace S {
                     return `
                         background-color: ${Colors.Green700};
                         
-                        :hover {
+                        :hover,
+                        :focus {
                             background-color: ${Colors.Green600};
                         }
                     `;
