@@ -1,14 +1,13 @@
 import { BoardDto } from "server/src/domains/board/dto/board.dto";
-import {useMutation, useQuery} from "@tanstack/react-query";
+import {useMutation, UseMutationOptions, useQuery} from "@tanstack/react-query";
 import { useQueryKeys } from "@/constants/queryKeys";
 import { getBoard, postBoard, putBoard } from "@/api/BoardApi";
+import {AxiosError} from "axios";
 
-export const useCreateBoard = () =>
+export const useCreateBoard = (options?: UseMutationOptions<unknown, AxiosError, BoardDto, unknown>) =>
     useMutation({
         mutationFn: (params: BoardDto) => postBoard(params),
-        onSuccess: () => {
-            console.log('successfully created board');
-        }
+        ...options,
     });
 
 export const useGetBoard = () =>
