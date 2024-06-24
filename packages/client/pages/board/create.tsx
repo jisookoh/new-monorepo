@@ -1,15 +1,10 @@
 import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import styled from '@emotion/styled';
-import dynamic from "next/dynamic";
 import 'react-quill/dist/quill.snow.css';
 import { BoardLayout } from "@/components/layout/BoardLayout";
 import { useCreateBoard } from "@/queries/board/useBoard";
 import { Button } from "@/components/common/button";
-
-const Quill = dynamic(() => import('react-quill'), {
-    ssr: false,
-    loading: () => <p>Loading ...</p>,
-});
+import {QuillEditor} from "@/components/common/editor/QuillTextEditor";
 
 export default function CreateBoard() {
     const [title, setTitle] = useState<string>("");
@@ -34,13 +29,11 @@ export default function CreateBoard() {
         <BoardLayout title="게시글 등록">
             <S.CreateBoardFormWrapper onSubmit={onSubmit}>
                 <S.Input type="text" value={title} onChange={changeTitleValue} />
-                <Quill value={content} onChange={changeContentsValue} />
+                <QuillEditor editorValue={content} onChangeEditor={changeContentsValue} />
                 <Button 
                     type="submit"
                     label="저장하기"
-                >
-                    저장하기
-                </Button>
+                />
             </S.CreateBoardFormWrapper>
         </BoardLayout>
     )
