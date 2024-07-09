@@ -1,4 +1,5 @@
 import styled from '@emotion/styled';
+import Input from "@/components/common/input/Input";
 import Button from "@/components/common/button/Button";
 import TextArea from "@/components/common/textarea/TextArea";
 import { BoardLayout } from "@/components/layout/BoardLayout";
@@ -36,8 +37,8 @@ export default function CreateBoard() {
     return (
         <BoardLayout title="게시글 등록">
             <S.CreateBoardFormWrapper onSubmit={handleSubmit}>
-                <S.Input type="text" name="title" required value={inputState.title} onChange={handleChange} />
-                <TextArea name="content" required value={inputState.content} onChange={handleChange} />
+                <Input name="title" placeholder="제목을 입력해주세요." required value={inputState.title} onChange={handleChange} />
+                <TextArea name="content" placeholder="내용을 입력해주세요." required value={inputState.content} onChange={handleChange} />
                 <Button
                     type="submit"
                     label="저장하기"

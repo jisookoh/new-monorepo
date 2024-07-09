@@ -1,12 +1,12 @@
 import { InputHTMLAttributes, memo } from "react";
 import styled from "@emotion/styled";
-import {Colors} from "@/styles";
+import { Colors } from "@/styles";
 
 interface TextAreaProps extends InputHTMLAttributes<HTMLTextAreaElement> {}
 
 const TextArea = ({
-                      ...rest
-                  }: TextAreaProps) => {
+    ...rest
+}: TextAreaProps) => {
     return (
         <S.TextAreaContainer
             {...rest}
@@ -24,5 +24,9 @@ namespace S {
         padding: 16px;
         resize: none;
         border-radius: 8px;
+        
+        &:focus {
+            border-color: ${Colors.Grey600};
+        }
     `;
 }
