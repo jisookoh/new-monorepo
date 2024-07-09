@@ -1,23 +1,31 @@
-import { ChangeEvent, FormEvent, useCallback, useState } from "react";
 import styled from '@emotion/styled';
 import Button from "@/components/common/button/Button";
 import TextArea from "@/components/common/textarea/TextArea";
 import { BoardLayout } from "@/components/layout/BoardLayout";
 import { useCreateBoard } from "@/queries/board/useBoard";
 import { useRouter } from "next/router";
-
-interface FormData {
-    [key: string]: string;
-}
+import { useInputState } from "@/hooks/useInputState";
 
 export default function CreateBoard() {
     const router = useRouter();
-    const [title, setTitle] = useState<string>("");
-    const [content, setContent] = useState<string>("");
+    const { inputState, setInputState, handleChange, handleSubmit } = useInputState({
+        initialValues: {
+            title: '',
+            content: ''
+        },
+        onSubmit: () => {
+            mutate({
+                title: inputState.title,
+                content: inputState.content
+            })
+        }
+    });
     const { mutate } = useCreateBoard({
         onSuccess: () => {
-            setTitle('');
-            setContent('');
+            setInputState({
+                title: '',
+                content: ''
+            });
             return router.push("/board/list");
         },
         onError: () => {
@@ -25,53 +33,11 @@ export default function CreateBoard() {
         }
     });
 
-    const changeTitleValue = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        setTitle(e.target.value);
-    }, []);
-
-    const changeContentsValue = useCallback((e: ChangeEvent<HTMLTextAreaElement>) => {
-        setContent(e.target.value);
-    }, []);
-
-    const validateForm = (requiredData: FormData): boolean => {
-        let isValid = true;
-
-        Object.entries(requiredData).forEach(([key, value]) => {
-            if (!value) {
-                console.error(`${key} is invalid`);
-
-                isValid = false;
-            }
-        });
-
-        return isValid;
-    }
-
-    const onSubmit = useCallback((e: FormEvent<HTMLFormElement>) => {
-        e.preventDefault();
-
-        const form = e.currentTarget;
-        const requiredValue: FormData = {};
-
-        Array.from(form.elements).forEach((element) => {
-            if (element instanceof HTMLInputElement && element.required) {
-                requiredValue[element.name] = element.value;
-            }
-        });
-
-        if (validateForm(requiredValue)) {
-            mutate({ title, content });
-        } else {
-            console.error(`폼이 유효하지 않습니다. 입력하지 않은 값이 있는지 확인해주세요!`);
-        }
-
-    }, [title, content, mutate]);
-
     return (
         <BoardLayout title="게시글 등록">
-            <S.CreateBoardFormWrapper onSubmit={onSubmit}>
-                <S.Input type="text" name="title" required value={title} onChange={changeTitleValue} />
-                <TextArea name="content" required value={content} onChange={changeContentsValue} />
+            <S.CreateBoardFormWrapper onSubmit={handleSubmit}>
+                <S.Input type="text" name="title" required value={inputState.title} onChange={handleChange} />
+                <TextArea name="content" required value={inputState.content} onChange={handleChange} />
                 <Button
                     type="submit"
                     label="저장하기"
