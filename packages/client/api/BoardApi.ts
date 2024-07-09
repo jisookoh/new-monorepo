@@ -6,8 +6,12 @@ export const postBoard = async (params: BoardDto) => {
     return ( await post('/board', params) ).data;
 }
 
-export const getBoard = async () => {
+export const getBoards = async () => {
     return ( await get<BoardDataType[]>('/board') ).data;
+}
+
+export const getBoard = async (params: string) => {
+    return ( await get<BoardDataType>(`/board/${params}`) ).data;
 }
 
 export const putBoard = async (params: BoardDto) => {

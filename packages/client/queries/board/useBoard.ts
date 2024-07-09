@@ -1,8 +1,8 @@
 import { BoardDto } from "server/src/domains/board/dto/board.dto";
-import {useMutation, UseMutationOptions, useQuery} from "@tanstack/react-query";
+import { useMutation, UseMutationOptions, useQuery } from "@tanstack/react-query";
 import { useQueryKeys } from "@/constants/queryKeys";
-import { getBoard, postBoard, putBoard } from "@/api/BoardApi";
-import {AxiosError} from "axios";
+import { getBoards, postBoard, putBoard, getBoard } from "@/api/BoardApi";
+import { AxiosError } from "axios";
 
 export const useCreateBoard = (options?: UseMutationOptions<unknown, AxiosError, BoardDto, unknown>) =>
     useMutation({
@@ -10,11 +10,18 @@ export const useCreateBoard = (options?: UseMutationOptions<unknown, AxiosError,
         ...options,
     });
 
-export const useGetBoard = () =>
+export const useGetBoards = () =>
     useQuery({
-        queryKey: useQueryKeys.GetBoard,
-        queryFn: () => getBoard(),
+        queryKey: useQueryKeys.GetBoards,
+        queryFn: () => getBoards(),
     });
+
+export const useGetBoard = (id: string) => {
+    return useQuery({
+        queryKey: useQueryKeys.GetBoard,
+        queryFn: () => getBoard(id),
+    })
+}
 
 export const useUpdateBoard = () =>
     useMutation({

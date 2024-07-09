@@ -10,12 +10,13 @@ export class BoardController {
 
     @Post()
     async create(@Body() board: BoardDto): Promise<BoardEntity> {
-        console.log(board);
+        console.log('aa');
         return await this.boardService.create(board);
     }
 
     @Put(':id')
     async update(@Param('id') id: number, @Body() board: BoardEntity): Promise<BoardEntity> {
+        console.log('aa');
         return this.boardService.update(+id, board);
     }
 
@@ -26,11 +27,13 @@ export class BoardController {
 
     @Get()
     async findAll(): Promise<BoardEntity[]> {
+        console.log('aa');
         return this.boardService.findAll();
     }
 
     @Get(':id')
     async findOne(@Param('id') id: number): Promise<BoardEntity> {
+        console.log('aa');
         return this.boardService.findOne(+id);
     }
 }

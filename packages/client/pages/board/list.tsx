@@ -1,14 +1,19 @@
 import styled from '@emotion/styled';
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Table, TableHead, TableBody, TableTr, TableTd } from "@/components/common/table";
-import { useGetBoard } from "@/queries/board/useBoard";
+import { useGetBoards } from "@/queries/board/useBoard";
 import { BOARD_COLUMNS, BoardDataType } from "@/constants/board";
 import { BoardLayout } from "@/components/layout/BoardLayout";
 import { Buttons } from "@/styles";
 
-
 export default function BoardList() {
-    const { data: boardData } = useGetBoard();
+    const router = useRouter();
+    const { data: boardData } = useGetBoards();
+
+    const moveToBoardDetail = (id: number) => {
+        return router.push(`/board/view/${id}`);
+    };
 
     return (
         <BoardLayout>
@@ -21,7 +26,7 @@ export default function BoardList() {
                     <TableBody>
                         { boardData &&
                             boardData.map((board: BoardDataType) => (
-                            <TableTr key={ board.id }>
+                            <TableTr key={ board.id } onClick={() => moveToBoardDetail(board.id)}>
                                 <TableTd>{ board.id }</TableTd>
                                 <TableTd>{ board.title }</TableTd>
                                 <TableTd>{ board.reg_date }</TableTd>

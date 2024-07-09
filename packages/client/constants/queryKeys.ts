@@ -1,7 +1,9 @@
 export enum QueryKeys {
+    GetBoards = 'GetBoards',
     GetBoard = 'GetBoard'
 }
 
 export const useQueryKeys = {
-    GetBoard: [QueryKeys.GetBoard],
+    GetBoards: [QueryKeys.GetBoards],
+    GetBoard: [QueryKeys.GetBoard]
 }
