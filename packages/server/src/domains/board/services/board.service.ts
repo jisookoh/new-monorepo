@@ -29,7 +29,11 @@ export class BoardService {
     }
 
     async findAll(): Promise<BoardEntity[]> {
-        return this.boardRepository.find();
+        return this.boardRepository.find({
+            order: {
+                id: 'DESC'
+            },
+        });
     }
 
     async findOne(id: number): Promise<BoardEntity> {
