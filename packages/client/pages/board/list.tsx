@@ -6,6 +6,7 @@ import { useGetBoards } from "@/queries/board/useBoard";
 import { BOARD_COLUMNS, BoardDataType } from "@/constants/board";
 import { BoardLayout } from "@/components/layout/BoardLayout";
 import { Buttons } from "@/styles";
+import { defaultDateFormat } from "@/utils/date";
 
 export default function BoardList() {
     const router = useRouter();
@@ -29,7 +30,7 @@ export default function BoardList() {
                             <TableTr key={ board.id } onClick={() => moveToBoardDetail(board.id)}>
                                 <TableTd>{ board.id }</TableTd>
                                 <TableTd>{ board.title }</TableTd>
-                                <TableTd>{ board.reg_date }</TableTd>
+                                <TableTd>{ defaultDateFormat(board.reg_date) }</TableTd>
                             </TableTr>
                         )) }
                     </TableBody>

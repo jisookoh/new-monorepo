@@ -1,4 +1,4 @@
-export const defaultDateFormat = (dateStr: Date) => {
+export const defaultDateFormat = (dateStr: Date | string) => {
     const date = new Date(dateStr);
 
     const options = {
@@ -13,5 +13,6 @@ export const defaultDateFormat = (dateStr: Date) => {
     };
 
     // @ts-ignore
+    // output: 20xx. xx. xx 오후 10:00
     return new Intl.DateTimeFormat('ko-KR', options).format(date);
 }
